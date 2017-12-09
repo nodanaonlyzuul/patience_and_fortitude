@@ -18,6 +18,12 @@ Or install it yourself as:
 
     $ gem install patience_and_fortitude
 
+## Example Video
+
+This application makes (fun?) sounds. 
+
+[![Screencast Video Screenshot](resources/vimeo-screenshot.png)](https://vimeo.com/246590038)
+
 ## Usage
 
 ```
