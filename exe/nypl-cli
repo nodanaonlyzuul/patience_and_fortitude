@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "patience_and_fortitude"
+require "patience_and_fortitude/audio_player"
+require "patience_and_fortitude/response_formatter"
+require 'highline'
+require 'whirly'
+require 'nypl_site_scraper/scraper'
+
+@highline = HighLine.new
+
+Whirly.start spinner: "random_dots" do
+  puts Rainbow(File.read(File.join(File.dirname(__FILE__), '..', 'resources', 'banner-ascii.txt'))).green
+  PatienceAndFortitude::AudioPlayer.play('tone-and-notes')
+end
+
+@barcode = @highline.ask("Enter your barcode:  ") { |q| q.echo = "*" }
+@pin     = @highline.ask("Enter your pin:  ")     { |q| q.echo = "*" }
+
+Whirly.start spinner: "noise", status: "connecting" do
+  PatienceAndFortitude::AudioPlayer.play('modem-connection')
+  @client = NyplSiteScraper::Client.new(barcode: @barcode, pin: @pin)
+  @client.login!
+end
+
+def fetch_holds
+  puts PatienceAndFortitude::ResponseFormatter.holds_response_to_sentence(@client.get_holds)
+  main_menu
+end
+
+def leave_app
+  PatienceAndFortitude::AudioPlayer.play('goodbye')
+  exit 0
+end
+
+def fetch_fines
+  puts PatienceAndFortitude::ResponseFormatter.fines_response_to_sentence(@client.get_holds)
+  main_menu
+end
+
+def main_menu
+  @highline.choose do |menu|
+    menu.prompt = "What would you like to do?"
+    menu.choice("See My Holds") { fetch_holds }
+    menu.choice("See My Fines") { fetch_fines }
+    menu.choice("Exit")         { leave_app }
+  end
+end
+
+PatienceAndFortitude::AudioPlayer.play('welcome')
+main_menu
