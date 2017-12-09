@@ -16,11 +16,17 @@ module PatienceAndFortitude
         table_data << table_row
       end
 
-      Formatador.display_compact_table(table_data, [:STATUS, :TITLE, :PICKUP_LOCATION])
+      if table_data.empty?
+        "Sorry. You have no holds."
+      else
+        Formatador.display_compact_table(table_data, [:STATUS, :TITLE, :PICKUP_LOCATION])
+      end
+
     end
 
     def self.fines_response_to_sentence(fines_response)
       fines_array = fines_response[:fines]
+
       table_data = []
       fines_array.each do |fine|
         table_row = {
@@ -29,7 +35,12 @@ module PatienceAndFortitude
         }
         table_data << table_row
       end
-      Formatador.display_compact_table(table_data, [:FINE, :TITLE])
+
+      if table_data.empty?
+        "Mazel! You have no fines. You ARE fine. You're better than fine. Is...is this love?"
+      else
+        Formatador.display_compact_table(table_data, [:FINE, :TITLE])
+      end
     end
   end
 end

@@ -25,7 +25,7 @@ Whirly.start spinner: "noise", status: "connecting" do
 end
 
 def fetch_holds
-  puts PatienceAndFortitude::ResponseFormatter.holds_response_to_sentence(@client.get_holds)
+  puts "\n#{PatienceAndFortitude::ResponseFormatter.holds_response_to_sentence(@client.get_holds)}\n\n"
   main_menu
 end
 
@@ -35,7 +35,7 @@ def leave_app
 end
 
 def fetch_fines
-  puts PatienceAndFortitude::ResponseFormatter.fines_response_to_sentence(@client.get_fines)
+  puts "\n#{PatienceAndFortitude::ResponseFormatter.fines_response_to_sentence(@client.get_fines)}\n\n"
   main_menu
 end
 
