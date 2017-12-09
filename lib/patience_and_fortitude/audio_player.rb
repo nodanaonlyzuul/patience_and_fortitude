@@ -1,5 +1,6 @@
 module PatienceAndFortitude
   class AudioPlayer
+    # For osx, ubuntu, raspbian respectively
     COMMANDS_TO_TRY = %w[afplay play omxplayer]
 
     def self.play(file_name)
