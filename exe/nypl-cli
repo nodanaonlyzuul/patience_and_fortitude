@@ -35,7 +35,7 @@ def leave_app
 end
 
 def fetch_fines
-  puts PatienceAndFortitude::ResponseFormatter.fines_response_to_sentence(@client.get_holds)
+  puts PatienceAndFortitude::ResponseFormatter.fines_response_to_sentence(@client.get_fines)
   main_menu
 end
 

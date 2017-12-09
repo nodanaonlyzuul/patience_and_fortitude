@@ -31,11 +31,11 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'highline', '~> 1.7'
   spec.add_dependency 'whirly', '~> 0.2.6'
-  spec.add_dependency 'nypl-site-scraper', '0.1.0'
+  spec.add_dependency 'nypl-site-scraper', '0.1.1'
   spec.add_dependency 'rainbow', '~> 3.0'
   spec.add_dependency 'paint', '~> 2.0'
   spec.add_dependency 'formatador', '~> 0.2.5'
-  
+
   spec.add_development_dependency "pry", '~> 0.11.3'
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"

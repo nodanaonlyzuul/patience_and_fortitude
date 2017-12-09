@@ -20,13 +20,16 @@ module PatienceAndFortitude
     end
 
     def self.fines_response_to_sentence(fines_response)
-      table_data = [
-        {:fine_amount => "$2.03", :title => "Zen and the Art of Motorcycle Maintenance",:due_since => "2017-11-13"},
-        {:fine_amount => "$1.50", :title => "Half Asleep in Frog Pajamas", :due_since => "2017-12-01"},
-        {:fine_amount => "$3.50", :title => "Modern Web Development With Apache Struts", :due_since => "2017-10-05"}
-      ]
-
-      Formatador.display_compact_table(table_data, [:fine_amount, :title, :due_since])
+      fines_array = fines_response[:fines]
+      table_data = []
+      fines_array.each do |fine|
+        table_row = {
+          FINE: fine[:fineAmount],
+          TITLE:  fine[:title]
+        }
+        table_data << table_row
+      end
+      Formatador.display_compact_table(table_data, [:FINE, :TITLE])
     end
   end
 end
