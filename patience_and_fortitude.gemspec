@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'highline', '~> 1.7'
   spec.add_dependency 'whirly', '~> 0.2.6'
-  spec.add_dependency 'nypl-site-scraper', '0.1.1'
+  spec.add_dependency 'nypl-site-scraper', '0.1.2'
   spec.add_dependency 'rainbow', '~> 3.0'
   spec.add_dependency 'paint', '~> 2.0'
   spec.add_dependency 'formatador', '~> 0.2.5'
