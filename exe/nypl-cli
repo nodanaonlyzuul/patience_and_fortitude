@@ -39,11 +39,17 @@ def fetch_fines
   main_menu
 end
 
+def fetch_checkouts
+  puts "\n#{PatienceAndFortitude::ResponseFormatter.checkout_response_to_sentence(@client.get_checkouts)}\n\n"
+  main_menu
+end
+
 def main_menu
   @highline.choose do |menu|
     menu.prompt = "What would you like to do?"
     menu.choice("See My Holds") { fetch_holds }
     menu.choice("See My Fines") { fetch_fines }
+    menu.choice("See My Current Checkouts") { fetch_checkouts }
     menu.choice("Exit")         { leave_app }
   end
 end

@@ -3,6 +3,25 @@ module PatienceAndFortitude
     require 'rainbow'
     require 'formatador'
 
+    def self.checkout_response_to_sentence(checkouts_response)
+      checkouts_array = checkouts_response[:checkouts]
+
+      table_data = []
+      checkouts_array.each do |checkout|
+        table_row = {
+          TITLE: checkout[:title],
+          DUE:   checkout[:dueDate].gsub('DUE ', '')
+        }
+        table_data << table_row
+      end
+
+      if table_data.empty?
+        "You have nothing checked out. You should fix that.\nGo to https://nypl.org and take advantage of the world's greatest library."
+      else
+        Formatador.display_compact_table(table_data, [:TITLE, :DUE])
+      end
+    end
+
     def self.holds_response_to_sentence(holds_response)
       holds_array = holds_response[:holds]
 
