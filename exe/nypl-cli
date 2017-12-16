@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
 require "patience_and_fortitude"
 require "patience_and_fortitude/audio_player"
 require "patience_and_fortitude/response_formatter"
